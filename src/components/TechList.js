@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TechItem from "./TechItem";
 class TechList extends Component {
+  // static defaultProps = {};
   state = {
     techs: ["node Js", "react Js", "react Native"],
     newTech: ""
