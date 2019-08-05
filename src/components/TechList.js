@@ -21,6 +21,12 @@ class TechList extends Component {
     });
   };
 
+  handleDelete = tech => {
+    this.setState({
+      techs: this.state.techs.filter(t => t !== tech)
+    });
+  };
+
   render() {
     const { techs } = this.state;
 
@@ -28,7 +34,12 @@ class TechList extends Component {
       <form onSubmit={this.handleSubmit}>
         <ul>
           {techs.map(tech => (
-            <li key={tech}>{tech}</li>
+            <li key={tech}>
+              {tech}
+              <button type="button" onClick={() => this.handleDelete(tech)}>
+                Remover
+              </button>
+            </li>
           ))}
         </ul>
         <input
