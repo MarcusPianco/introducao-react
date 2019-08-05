@@ -11,12 +11,21 @@ class TechList extends Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState({
+      //cria um novo estado para o array,
+      //sempre copiar o content e adicionar
+      techs: [...this.state.techs, this.state.newTech],
+      newTech: ""
+    });
+  };
+
   render() {
     const { techs } = this.state;
 
     return (
-      <>
-        <h1>{this.state.newTech}</h1>
+      <form onSubmit={this.handleSubmit}>
         <ul>
           {techs.map(tech => (
             <li key={tech}>{tech}</li>
@@ -27,7 +36,8 @@ class TechList extends Component {
           onChange={this.handleInputChange}
           value={this.state.newTech}
         />
-      </>
+        <button type="submit">Submeter</button>
+      </form>
     );
   }
 }
