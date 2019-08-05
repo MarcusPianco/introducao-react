@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TechItem from "./TechItem";
 class TechList extends Component {
   state = {
     techs: ["node Js", "react Js", "react Native"],
@@ -20,7 +21,9 @@ class TechList extends Component {
       newTech: ""
     });
   };
-
+  //as funções que modificam o state,
+  // devem sempre estar dentro da classe
+  //  que implementa o state
   handleDelete = tech => {
     this.setState({
       techs: this.state.techs.filter(t => t !== tech)
@@ -34,12 +37,12 @@ class TechList extends Component {
       <form onSubmit={this.handleSubmit}>
         <ul>
           {techs.map(tech => (
-            <li key={tech}>
-              {tech}
-              <button type="button" onClick={() => this.handleDelete(tech)}>
-                Remover
-              </button>
-            </li>
+            <TechItem
+              tech={tech}
+              key={tech}
+              //biding para a funçção handleDelete
+              onDelete={() => this.handleDelete(tech)}
+            />
           ))}
         </ul>
         <input
